@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# TODO:
+# - Allow user and private-key to be set on script invocation and use default values otherwise
+
+set -eo pipefail
+
+if [ -z "$1" ]; then
+    echo "Error: Must supply hostname|ip address to bootstrap"
+    exit 1
+fi
+
+docker run --rm -it \
+    -v $(pwd):/ansible \
+    -v ~/.ssh/id_rsa:/home/ansible/.ssh/glagasse \
+    glagasse/ansible \
+    ansible-playbook -i ${1}, --user glagasse --private-key /home/ansible/.ssh/glagasse playbooks/bootstrap_ansible.yml

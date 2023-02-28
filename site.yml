@@ -1,0 +1,2 @@
+---
+- import_playbook: playbooks/dns_server.yml
